@@ -1,29 +1,22 @@
 package by.cars.delivery.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "user")
+@Table(name = "black_list")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserEntity {
+public class BlackListTokenEntity {
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private int id;
 
-        private String email;
-
-        private String role;
-
-        private String phone;
-
-        private String password;
+        private String token;
 }
