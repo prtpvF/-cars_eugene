@@ -20,9 +20,9 @@ public class PersonDetailsService implements UserDetailsService {
     private final UserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserEntity person = userRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
+    public UserDetails loadUserByUsername(String phone) throws UsernameNotFoundException {
+        UserEntity person = userRepository.findByPhone(phone)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + phone));
         Set<GrantedAuthority> authorities = new HashSet<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_" + person.getRole()));
         return new PersonDetails(person, authorities);

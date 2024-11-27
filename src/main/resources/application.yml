@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: delivery
+  datasource:
+    url: jdbc:postgresql://localhost:5432/eugene
+    username: mihail
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: create

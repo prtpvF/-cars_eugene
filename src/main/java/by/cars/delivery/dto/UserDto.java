@@ -1,26 +1,24 @@
-package by.cars.delivery.model;
+package by.cars.delivery.dto;
 
-import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Entity
-@Table(name = "user_entity")
+@Builder
 @Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserEntity {
+public class UserDto {
 
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
         private int id;
+        @NotBlank(message = "Номер телефона не может быть пустым")
+        @Pattern(regexp = "^\\+?[0-9]{10,15}$", message = "Номер телефона должен содержать только цифры и может начинаться с '+'")
+        private String phone;
 
         @Email(message = "Email должен быть корректным")
         @NotBlank(message = "Email не может быть пустым")
@@ -34,13 +32,8 @@ public class UserEntity {
         @Size(min = 2, max = 30, message = "Фамилия должна содержать от 2 до 30 символов")
         private String lastName;
 
-        private String role;
-
-        @NotBlank(message = "Номер телефона не может быть пустым")
-        @Pattern(regexp = "^\\+?[0-9]{10,15}$", message = "Номер телефона должен содержать только цифры и может начинаться с '+'")
-        private String phone;
-
         @NotBlank(message = "Пароль не может быть пустым")
         @Size(min = 8, message = "Пароль должен содержать не менее 8 символов")
         private String password;
+
 }
