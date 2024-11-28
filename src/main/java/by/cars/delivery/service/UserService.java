@@ -20,7 +20,7 @@ public class UserService {
         userEntity.setEmail(userDto.getEmail());
         userEntity.setFirstName(userDto.getFirstName());
         userEntity.setLastName(userDto.getLastName());
-        userEntity.setPhone(userDto.getPhone());
+        userEntity.setUsername(userDto.getPhone());
         return userEntity;
     }
 }

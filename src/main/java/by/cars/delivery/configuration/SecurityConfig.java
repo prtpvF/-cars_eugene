@@ -33,8 +33,8 @@ public class SecurityConfig {
                         .loginProcessingUrl("/process_login")
                         .failureForwardUrl("/auth/login?error")
                         .defaultSuccessUrl("/home", true).permitAll());
-        http.csrf(csrf -> csrf.disable());
         http.logout((logout)->logout.logoutUrl("/logout").logoutSuccessUrl("/auth/login"));
+        http.csrf(csrf -> csrf.disable());
         return http.build();
     }
     @Bean
@@ -47,7 +47,6 @@ public class SecurityConfig {
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder(){
-
         return new BCryptPasswordEncoder();
     }
 

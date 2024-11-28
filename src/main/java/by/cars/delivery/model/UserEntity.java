@@ -38,7 +38,7 @@ public class UserEntity {
 
         @NotBlank(message = "Номер телефона не может быть пустым")
         @Pattern(regexp = "^\\+?[0-9]{10,15}$", message = "Номер телефона должен содержать только цифры и может начинаться с '+'")
-        private String phone;
+        private String username;
 
         @NotBlank(message = "Пароль не может быть пустым")
         @Size(min = 8, message = "Пароль должен содержать не менее 8 символов")

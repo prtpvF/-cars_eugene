@@ -20,9 +20,10 @@ main {
     text-align: center;
 }
 
-h2 {
+h2, h1 {
     font-size: 24px;
     margin-bottom: 20px;
+    color: #154484;
 }
 
 label {
@@ -47,7 +48,7 @@ input:focus {
     box-shadow: 0px 0px 10px rgba(21, 68, 132, 0.4);
 }
 
-.register-button {
+.register-button, .submit-button {
     background-color: #154484;
     color: white;
     font-size: 16px;
@@ -60,7 +61,7 @@ input:focus {
     transition: transform 0.2s ease, background-color 0.3s ease;
 }
 
-.register-button:hover {
+.register-button:hover, .submit-button:hover {
     background-color: #1a5bbb;
     transform: translateY(-2px); /* Поднимаем кнопку */
 }
@@ -88,4 +89,12 @@ span {
     font-size: 14px;
     text-align: left;
     display: block;
+}
+
+/* Ошибки */
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: left;
 }
