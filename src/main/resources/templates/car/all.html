@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Список машин</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body >
+<div class="cars-background-container">
+  <div th:each="car : ${carPage.content}" class="car-card">
+    <!-- Блок изображения -->
+    <div class="car-image">
+      <img th:src="${car.pathToFiles[0]}" alt="Фото автомобиля" class="preview-image">
+    </div>
+
+    <!-- Название бренда -->
+    <h3 class="car-brand" th:text="${car.brand}"></h3>
+
+    <!-- Информация о машине -->
+    <div class="car-details">
+      <ul class="car-specs">
+        <li>
+          <span>Модель:</span>
+          <span th:text="${car.model}"></span>
+        </li>
+        <li>
+          <span>Год выпуска:</span>
+          <span th:text="${car.year}"></span>
+        </li>
+        <li>
+          <span>Состояние:</span>
+          <span th:text="${car.condition}"></span>
+        </li>
+        <li>
+          <span>Цвет:</span>
+          <span th:text="${car.color}"></span>
+        </li>
+        <li>
+          <span>Объем двигателя:</span>
+          <span th:text="${car.volume + ' л'}"></span>
+        </li>
+        <li>
+          <span>Пробег:</span>
+          <span th:text="${car.mileage + ' км'}"></span>
+        </li>
+        <li>
+          <span>Коробка передач:</span>
+          <span th:text="${car.transmissionType}"></span>
+        </li>
+      </ul>
+      <div class="car-price">
+        <p th:text="'Цена: ' + ${car.price} + ' $'"></p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Пагинация -->
+  <div class="pagination">
+    <!-- Кнопка "Предыдущая страница" -->
+    <a th:href="@{/all(page=${carPage.number - 1}, size=${carPage.size})}"
+       th:classappend="${carPage.hasPrevious()} ? '' : 'disabled'" class="page-link">Предыдущая</a>
+
+    <!-- Отображение страниц -->
+    <span th:each="i : ${#numbers.sequence(0, carPage.totalPages - 1)}">
+            <a th:href="@{/all(page=${i}, size=${carPage.size})}"
+               th:text="${i + 1}"
+               th:classappend="${i == carPage.number} ? 'active' : ''"
+               class="page-number"></a>
+        </span>
+
+    <!-- Кнопка "Следующая страница" -->
+    <a th:href="@{/all(page=${carPage.number + 1}, size=${carPage.size})}"
+       th:classappend="${carPage.hasNext()} ? '' : 'disabled'" class="page-link">Следующая</a>
+  </div>
+</div>
+<script th:src="@{/js/index.js}"></script>
+</body>
+</html>

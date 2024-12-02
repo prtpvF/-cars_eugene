@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Registration</title>
+</head>
+<body>
+<main id="registration">
+    <h1 class="form-title">CarDelivery</h1>
+    <section>
+        <h2>Fill in the form</h2>
+        <div class="sign-in-container" style="margin-bottom: 10%; margin-top:10%">
+            <form method="POST" th:action="@{/admin/car}" th:object="${car}">
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+
+                <label for="brand">Марка:</label>
+                <input type="text" th:field="*{brand}" id="brand">
+                <span th:if="${#fields.hasErrors('brand')}" th:errors="*{brand}"></span>
+
+                <label for="model">Модель:</label>
+                <input type="text" th:field="*{model}" id="model">
+                <span th:if="${#fields.hasErrors('model')}" th:errors="*{model}"></span>
+
+                <label for="color">Цвет:</label>
+                <input type="text" th:field="*{color}" id="color">
+                <span th:if="${#fields.hasErrors('color')}" th:errors="*{color}"></span>
+
+                <label for="price">Цена:</label>
+                <input type="number" th:field="*{price}" id="price">
+                <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+
+                <label for="transmissionType">Тип КПП:</label>
+                <input type="text" th:field="*{transmissionType}" id="transmissionType">
+                <span th:if="${#fields.hasErrors('transmissionType')}" th:errors="*{transmissionType}"></span>
+
+                <label for="year">Год выпуска:</label>
+                <input type="number" th:field="*{year}" id="year">
+                <span th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></span>
+
+
+                <label for="mileage">Пробег:</label>
+                <input type="number" th:field="*{mileage}" id="mileage">
+                <span th:if="${#fields.hasErrors('mileage')}" th:errors="*{mileage}"></span>
+
+
+                <label for="volume">Объем:</label>
+                <input type="number" th:field="*{volume}" id="volume">
+                <span th:if="${#fields.hasErrors('volume')}" th:errors="*{volume}"></span>
+
+                <label for="files">Фотографии:</label>
+                <input type="file" name="files" id="files" multiple />
+                <span th:if="${#fields.hasErrors('files')}" th:errors="*{files}"></span>
+
+                <button class="register-button" type="submit">Зарегестрироваться</button>
+                <a th:href="@{/auth/login}">Войти</a>
+            </form>
+
+            <h2>Загруженные файлы:</h2>
+            <ul>
+                <li th:each="file : ${uploadedFiles}" th:text="${file}"></li>
+            </ul>
+
+        </div>
+    </section>
+</main>
+</body>
+</html>

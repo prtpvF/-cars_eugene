@@ -54,19 +54,4 @@ public class AuthController {
         model.addAttribute("_csrf", csrfToken);
         return "auth/login";
     }
-
-//    @PostMapping("/process_login")
-//    public String login(@RequestParam String phone, @RequestParam String password, Model model) {
-//        try {
-//            UserEntity user = authService.login(phone, password);
-//            model.addAttribute("user", user); // Добавляем пользователя в модель
-//            return "dashboard"; // Возвращаем имя представления (view) для успешного входа
-//        } catch (IllegalArgumentException e) {
-//            model.addAttribute("error", "Неверные логин или пароль"); // Добавляем сообщение об ошибке
-//            return "login"; // Возвращаем имя представления для страницы входа
-//        }
-//    }
-
-
-
 }

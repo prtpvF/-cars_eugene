@@ -27,7 +27,7 @@ public class CarEntity {
         private Double volume;
         @Min(value = 0, message = "пробег не может быть меньше 0")
         private double mileage;
-        @Min(value = 1940, message = "год выпуска не может быть меньше 190")
+        @Min(value = 1940, message = "год выпуска не может быть меньше 1940")
         @Max(value = 2025, message = "год не может быть больше чем 2025")
         private int year;
         @NotBlank
@@ -38,10 +38,12 @@ public class CarEntity {
         private String brand;
         @NotBlank
         private String model;
-        @NotBlank
+        @Min(value = 0, message = "цена должна быть положительной")
         private double price;
         @NotBlank
         private String transmissionType;
+
+        private String description;
         @ManyToMany
         @JoinTable(
                 name="car_image",

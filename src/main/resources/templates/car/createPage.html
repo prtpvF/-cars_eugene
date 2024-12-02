@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" th:href="@{/css/style.css}" />
+  <title>Car Registration</title>
+</head>
+<body>
+<main id="creating">
+  <h1 class="form-title">CarDelivery</h1>
+  <section>
+    <h2>Fill in the form</h2>
+    <div class="sign-in-container">
+      <form method="POST" th:action="@{/car/create}" th:object="${car}" enctype="multipart/form-data">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+
+        <label for="brand">Марка:</label>
+        <input type="text" th:field="*{brand}" id="brand" placeholder="Введите марку" required minlength="2">
+        <span th:if="${#fields.hasErrors('brand')}" th:errors="*{brand}"></span>
+
+        <label for="model">Модель:</label>
+        <input type="text" th:field="*{model}" id="model" placeholder="Введите модель" required minlength="2">
+        <span th:if="${#fields.hasErrors('model')}" th:errors="*{model}"></span>
+
+        <label for="color">Цвет:</label>
+        <input type="text" th:field="*{color}" id="color" placeholder="Например: Черный" required>
+        <span th:if="${#fields.hasErrors('color')}" th:errors="*{color}"  style="color: red"></span>
+
+        <label for="price">Цена:</label>
+        <input type="number" th:field="*{price}" id="price" placeholder="Введите цену" required min="0" step="any">
+        <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+
+        <label for="transmissionType">Тип КПП:</label>
+        <select th:field="*{transmissionType}" id="transmissionType" >
+          <option value="" disabled selected>Выберите тип КПП</option>
+          <option value="механическая">Механическая</option>
+          <option value="автомат">Автоматическая</option>
+          <option value="полу-автомат">Полуавтоматическая</option>
+          <option value="робот">Робот</option>
+        </select>
+        <span th:if="${#fields.hasErrors('transmissionType')}" th:errors="*{transmissionType}"  style="color: red"></span>
+
+        <label for="condition">Состояние:</label>
+        <select th:field="*{condition}" id="condition" >
+          <option value="" disabled selected>Выберите состояние</option>
+          <option value="новое">Новое</option>
+          <option value="бу">Бу</option>
+          <option value="аварийная">Аварийная</option>
+        </select>
+        <span th:if="${#fields.hasErrors('condition')}" th:errors="*{condition}"  style="color: red"></span>
+
+        <label for="year">Год выпуска:</label>
+        <input type="number" th:field="*{year}" id="year" placeholder="Введите год" required min="1940" max="2024">
+        <span th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></span>
+
+        <label for="mileage">Пробег:</label>
+        <input type="number" th:field="*{mileage}" id="mileage" placeholder="Введите пробег" required step="any">
+        <span th:if="${#fields.hasErrors('mileage')}" th:errors="*{mileage}"></span>
+
+        <label for="volume">Объем:</label>
+        <input type="number" th:field="*{volume}" id="volume" placeholder="Введите объем" required min="0.1" step="0.1">
+        <span th:if="${#fields.hasErrors('volume')}" th:errors="*{volume}"></span>
+
+        <label for="description">Описание:</label>
+        <input type="text" th:field="*{description}" id="description" placeholder="Введите описание" required >
+        <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"  style="color: red"></span>
+
+
+        <label for="files">Фотографии:</label>
+        <div id="customFileInput">
+          <input type="file" th:field="*{files}" id="files" multiple style="display: none;" />
+          <button type="button" class="upload-button" onclick="document.getElementById('files').click();">Выберите файлы</button>
+          <span id="fileNames">Файлы не выбраны</span>
+
+          <div th:if="${fileUploadError}" class="error">
+            <p th:text="${fileUploadError}" style="color: red"></p>
+          </div>
+        </div>
+
+
+        <div id="filePreview" style="margin-top: 10px; display: flex; gap: 10px; flex-wrap: wrap;"></div>
+
+
+        <button class="register-button" type="submit">Создать</button>
+        <button type="reset" class="clear-button">Очистить</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<script th:src="@{/js/index.js}"></script>
+</body>
+</html>
